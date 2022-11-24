@@ -59,7 +59,7 @@ class SendTestMailCommand extends Command
         }
 
         if (config("mail.mailers.{$mailerName}.transport") !== 'mailcoach') {
-            $this->components->error("Your mailer named `$mailerName` does not seems to be a mailcoach mailer. Make sure you set the  `mail.mailers.{$mailerName}.transport` config value to 'mailcoach'");
+            $this->components->error("Your mailer named `$mailerName` does not seem to be a mailcoach mailer. Make sure you set the  `mail.mailers.{$mailerName}.transport` config value to 'mailcoach'");
 
             return false;
         }
