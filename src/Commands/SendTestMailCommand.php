@@ -25,7 +25,7 @@ class SendTestMailCommand extends Command
         }
 
         if (! $mailerName = $this->option('mailer')) {
-            $mailerName = (string)config('mail.default');
+            $mailerName = (string) config('mail.default');
         }
 
         if (! $this->isValidMailer($mailerName)) {
@@ -34,7 +34,7 @@ class SendTestMailCommand extends Command
 
         $testMail = new TestMail($from, $to);
 
-        $this->warn("Sending test email...");
+        $this->warn('Sending test email...');
 
         Mail::mailer($mailerName)->send($testMail);
 
@@ -45,14 +45,13 @@ class SendTestMailCommand extends Command
 
     protected function isValidMailer(string $mailerName): bool
     {
-
         if (empty($mailerName)) {
-            $this->components->error("You did not specify a mailer name. Make should specify a default one in the `mail.default` config value");
+            $this->components->error('You did not specify a mailer name. Make should specify a default one in the `mail.default` config value');
 
             return false;
         }
 
-        if (config("mail.mailers.{$mailerName}") === null){
+        if (config("mail.mailers.{$mailerName}") === null) {
             $this->components->error("Your mailer named `$mailerName` does not have any configuration. Make sure you add a mailer configuration in the `mail.mailers.{$mailerName}` config value");
 
             return false;

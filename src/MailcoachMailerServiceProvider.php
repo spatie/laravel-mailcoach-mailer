@@ -21,7 +21,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        Mail::extend('mailcoach', function(array $config) {
+        Mail::extend('mailcoach', function (array $config) {
             $this->validateConfig($config);
 
             return (new MailcoachTransportFactory)->create(
@@ -41,7 +41,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
         collect([
             'domain',
             'token',
-        ])->each(function(string $key) use ($mailConfig) {
+        ])->each(function (string $key) use ($mailConfig) {
             if (! array_key_exists($key, $mailConfig)) {
                 throw InvalidMailerConfig::missingKey($key);
             }
