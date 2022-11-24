@@ -9,8 +9,8 @@ use Illuminate\Mail\Mailables\Envelope;
 class TestMail extends Mailable
 {
     public function __construct(
-        public $from,
-        public $to
+        public $testFrom,
+        public $testTo
     )
     {
     }
@@ -18,8 +18,8 @@ class TestMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: $this->from,
-            to: $this->to,
+            from: $this->testFrom,
+            to: $this->testTo,
             subject: "This is a test mail from Mailcoach",
         );
     }

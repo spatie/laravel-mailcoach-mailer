@@ -8,7 +8,7 @@ use Spatie\MailcoachMailer\Mails\TestMail;
 
 class SendTestMailCommand extends Command
 {
-    public $signature = 'mailcoach-mailer:send-test --from --to}';
+    public $signature = 'mailcoach-mailer:send-test {--from} {--to}';
 
     public $description = 'Send a test mail through Mailcoach';
 
@@ -18,9 +18,17 @@ class SendTestMailCommand extends Command
 
         if (! $configIsValid) {
             $this->components->error('Errors detected, did not send a mail...');
+
+            $this->components->info('Learn how to set up the mailcoach Mailer in our docs: https://mailcoach.app/docs');
+
+            return self::FAILURE;
         }
 
-        $from = $this->option('from') ?? config('mail.from.address');
+        $from = $this->option('from');
+
+        if (! $from) {
+            $from = config('mail.from.address');
+        }
 
         if (! $to = $this->option('to')) {
             $to = $this->ask('To which email address should be send a test', config('mail.from.address'));
@@ -28,7 +36,9 @@ class SendTestMailCommand extends Command
 
         $testMail = new TestMail($from, $to);
 
-        Mail::send($testMail);
+        $this->warn("Sending test email...");
+
+        Mail::mailer('mailcoach')->send($testMail);
 
         $this->components->info("A test mail has been sent, please check if it arrived at {$to}.");
 

@@ -2,6 +2,7 @@
 
 namespace Spatie\MailcoachMailer;
 
+use Exception;
 use Illuminate\Support\Facades\Mail;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -43,7 +44,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
             'mail.mailers.mailcoach.token',
         ])->each(function(string $configKey) {
             if (empty(config($configKey))) {
-                throw new \Exception("You must set the `$configKey` config option.");
+                throw new Exception("You must set the `$configKey` config option.");
             }
         });
     }
