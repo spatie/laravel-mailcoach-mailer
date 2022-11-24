@@ -15,7 +15,7 @@ class TestMail extends Mailable
     {
     }
 
-    public function envelope()
+    public function envelope(): Envelope
     {
         return new Envelope(
             from: $this->testFrom,
@@ -24,7 +24,7 @@ class TestMail extends Mailable
         );
     }
 
-    public function content()
+    public function content(): Content
     {
         return new Content(
             markdown: 'mailcoach-mailer::mails.test',
