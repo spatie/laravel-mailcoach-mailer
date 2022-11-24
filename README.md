@@ -1,5 +1,7 @@
 # The driver for sending transactional mails using Mailcoach in Laravel
 
+In development...
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/run-tests?label=tests)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
