@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Spatie\MailcoachMailer\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MailcoachMailerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-mailcoach-mailer';
 
     public $description = 'My command';
 
