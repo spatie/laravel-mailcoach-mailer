@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Mail;
-use Spatie\MailcoachMailer\Commands\SendTestMailCommand;
 use function Pest\Laravel\artisan;
+use Spatie\MailcoachMailer\Commands\SendTestMailCommand;
 
-beforeEach(function() {
+beforeEach(function () {
     Mail::fake();
 });
 
