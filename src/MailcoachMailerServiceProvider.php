@@ -46,7 +46,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
                 throw InvalidMailerConfig::missingKey($key);
             }
 
-            if (! array_key_exists($key, $mailConfig)) {
+            if (is_null($mailConfig[$key])) {
                 throw InvalidMailerConfig::missingValue($key);
             }
         });
