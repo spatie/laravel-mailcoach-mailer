@@ -21,7 +21,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        Mail::extend('mailcoach', function() {
+        Mail::extend('mailcoach', function () {
             $this->validateConfig();
 
             return (new MailcoachTransportFactory)->create(
@@ -42,7 +42,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
             'mail.mailers.mailcoach',
             'mail.mailers.mailcoach.domain',
             'mail.mailers.mailcoach.token',
-        ])->each(function(string $configKey) {
+        ])->each(function (string $configKey) {
             if (empty(config($configKey))) {
                 throw new Exception("You must set the `$configKey` config option.");
             }

@@ -11,8 +11,7 @@ class TestMail extends Mailable
     public function __construct(
         public $testFrom,
         public $testTo
-    )
-    {
+    ) {
     }
 
     public function envelope()
@@ -20,7 +19,7 @@ class TestMail extends Mailable
         return new Envelope(
             from: $this->testFrom,
             to: $this->testTo,
-            subject: "This is a test mail from Mailcoach",
+            subject: 'This is a test mail from Mailcoach',
         );
     }
 

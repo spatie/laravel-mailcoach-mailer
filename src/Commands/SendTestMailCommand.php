@@ -36,7 +36,7 @@ class SendTestMailCommand extends Command
 
         $testMail = new TestMail($from, $to);
 
-        $this->warn("Sending test email...");
+        $this->warn('Sending test email...');
 
         Mail::mailer('mailcoach')->send($testMail);
 
@@ -48,12 +48,13 @@ class SendTestMailCommand extends Command
     protected function validateConfig(): bool
     {
         $configProblems = collect([
-            'mail.mailers.mailcoach' => "You must set the `mail.mailers.mailcoach.domain` and `mail.mailers.mailcoach.token` config keys",
-            'mail.mailers.mailcoach.domain' => "You must set `mail.mailers.mailcoach.domain` config key",
-            'mail.mailers.mailcoach.token' => "You must set `mail.mailers.mailcoach.token` config key",
-        ])->filter(function(string $message, string $configKey) {
+            'mail.mailers.mailcoach' => 'You must set the `mail.mailers.mailcoach.domain` and `mail.mailers.mailcoach.token` config keys',
+            'mail.mailers.mailcoach.domain' => 'You must set `mail.mailers.mailcoach.domain` config key',
+            'mail.mailers.mailcoach.token' => 'You must set `mail.mailers.mailcoach.token` config key',
+        ])->filter(function (string $message, string $configKey) {
             if (empty(config($configKey))) {
                 $this->components->warn($message);
+
                 return true;
             }
 
