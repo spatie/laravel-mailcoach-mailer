@@ -10,7 +10,7 @@ class TestMail extends Mailable
 {
     public function __construct(
         public $testFrom,
-        public $testTo
+        public $testTo,
     )
     {
     }
@@ -27,7 +27,7 @@ class TestMail extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'mail.test',
+            markdown: 'mailcoach-mailer::mails.test',
         );
     }
 }

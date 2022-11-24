@@ -8,22 +8,12 @@ use Spatie\MailcoachMailer\Mails\TestMail;
 
 class SendTestMailCommand extends Command
 {
-    public $signature = 'mailcoach-mailer:send-test {--from} {--to}';
+    public $signature = 'mailcoach-mailer:send-test {--from=} {--to=} {--mailer=}';
 
     public $description = 'Send a test mail through Mailcoach';
 
     public function handle(): int
     {
-        $configIsValid = $this->validateConfig();
-
-        if (! $configIsValid) {
-            $this->components->error('Errors detected, did not send a mail...');
-
-            $this->components->info('Learn how to set up the mailcoach Mailer in our docs: https://mailcoach.app/docs');
-
-            return self::FAILURE;
-        }
-
         $from = $this->option('from');
 
         if (! $from) {
@@ -34,32 +24,46 @@ class SendTestMailCommand extends Command
             $to = $this->ask('To which email address should be send a test', config('mail.from.address'));
         }
 
+        if (! $mailerName = $this->option('mailer')) {
+            $mailerName = (string)config('mail.default');
+        }
+
+        if (! $this->isValidMailer($mailerName)) {
+            return self::FAILURE;
+        }
+
         $testMail = new TestMail($from, $to);
 
         $this->warn("Sending test email...");
 
-        Mail::mailer('mailcoach')->send($testMail);
+        Mail::mailer($mailerName)->send($testMail);
 
         $this->components->info("A test mail has been sent, please check if it arrived at {$to}.");
 
         return self::SUCCESS;
     }
 
-    protected function validateConfig(): bool
+    protected function isValidMailer(string $mailerName): bool
     {
-        $configProblems = collect([
-            'mail.mailers.mailcoach' => "You must set the `mail.mailers.mailcoach.domain` and `mail.mailers.mailcoach.token` config keys",
-            'mail.mailers.mailcoach.domain' => "You must set `mail.mailers.mailcoach.domain` config key",
-            'mail.mailers.mailcoach.token' => "You must set `mail.mailers.mailcoach.token` config key",
-        ])->filter(function(string $message, string $configKey) {
-            if (empty(config($configKey))) {
-                $this->components->warn($message);
-                return true;
-            }
+
+        if (empty($mailerName)) {
+            $this->components->error("You did not specify a mailer name. Make should specify a default one in the `mail.default` config value");
 
             return false;
-        });
+        }
 
-        return $configProblems->isEmpty();
+        if (config("mail.mailers.{$mailerName}") === null){
+            $this->components->error("Your mailer named `$mailerName` does not have any configuration. Make sure you add a mailer configuration in the `mail.mailers.{$mailerName}` config value");
+
+            return false;
+        }
+
+        if (config("mail.mailers.{$mailerName}.transport") !== 'mailcoach') {
+            $this->components->error("Your mailer named `$mailerName` does not seems to be a mailcoach mailer. Make sure you set the  `mail.mailers.{$mailerName}.transport` config value to 'mailcoach'");
+
+            return false;
+        }
+
+        return true;
     }
 }

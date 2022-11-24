@@ -2,11 +2,11 @@
 
 namespace Spatie\MailcoachMailer;
 
-use Exception;
 use Illuminate\Support\Facades\Mail;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\MailcoachMailer\Commands\SendTestMailCommand;
+use Spatie\MailcoachMailer\Exceptions\InvalidMailerConfig;
 use Symfony\Component\Mailer\Transport\Dsn;
 
 class MailcoachMailerServiceProvider extends PackageServiceProvider
@@ -21,30 +21,33 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        Mail::extend('mailcoach', function() {
-            $this->validateConfig();
+        Mail::extend('mailcoach', function(array $config) {
+            $this->validateConfig($config);
 
             return (new MailcoachTransportFactory)->create(
                 new Dsn(
                     'mailcoach',
-                    config('mail.mailers.mailcoach.domain'),
+                    $config['domain'],
                     options: [
-                        'token' => config('mail.mailers.mailcoach.api_token'),
+                        'token' => $config['token'],
                     ],
                 )
             );
         });
     }
 
-    protected function validateConfig(): void
+    protected function validateConfig($mailConfig): void
     {
         collect([
-            'mail.mailers.mailcoach',
-            'mail.mailers.mailcoach.domain',
-            'mail.mailers.mailcoach.token',
-        ])->each(function(string $configKey) {
-            if (empty(config($configKey))) {
-                throw new Exception("You must set the `$configKey` config option.");
+            'domain',
+            'token',
+        ])->each(function(string $key) use ($mailConfig) {
+            if (! array_key_exists($key, $mailConfig)) {
+                throw InvalidMailerConfig::missingKey($key);
+            }
+
+            if (! array_key_exists($key, $mailConfig)) {
+                throw InvalidMailerConfig::missingValue($key);
             }
         });
     }
