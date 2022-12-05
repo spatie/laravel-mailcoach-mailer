@@ -1,13 +1,13 @@
 <?php
 
-namespace Spatie\MailcoachMailer;
+namespace Spatie\MailcoachMailer\Concerns;
 
 use Spatie\MailcoachMailer\Headers\ReplacementHeader;
 use Spatie\MailcoachMailer\Headers\TransactionalMailHeader;
 use Symfony\Component\Mime\Email;
 
 /** @mixin \Illuminate\Mail\Mailable */
-trait SendsThroughMailcoach
+trait UsesMailcoachMail
 {
     public function mailcoachMail(string $mailName, array $replacements = []): self
     {
