@@ -9,8 +9,12 @@ use Symfony\Component\Mime\Email;
 /** @mixin \Illuminate\Mail\Mailable */
 trait SendsThroughMailcoach
 {
-    public function setTransactionalMail(string $mailName): self
+    public function mailcoachMail(string $mailName, array $replacements = []): self
     {
+        $this->html = 'use-mailcoach-mail';
+
+        $this->addReplacements($replacements);
+
         $this->withSymfonyMessage(function (Email $email) use ($mailName) {
             $header = new TransactionalMailHeader($mailName);
 
