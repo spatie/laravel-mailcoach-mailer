@@ -19,8 +19,7 @@
         "php": "^8.1",
         "illuminate/contracts": "^9.0",
         "spatie/laravel-package-tools": "^1.13.0",
-        "spatie/mailcoach-mailer": "dev-main",
-        "symfony/mime": "^6.2"
+        "spatie/mailcoach-mailer": "^1.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
