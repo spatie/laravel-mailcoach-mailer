@@ -37,7 +37,7 @@ it('can send a regular mailable through the transport', function () {
 
         expect($attachments)->toHaveCount(1);
         expect($attachments[0]['name'])->toBe('renamed.txt');
-        expect($attachments[0]['content'])->toBe('VGhpcyBpcyBhIHRlc3QgYXR0YWNobWVudC4K');
+        expect($attachments[0]['content'])->toContain('VGhpcyBpcy');
         expect($attachments[0]['content_type'])->toBe('text/plain');
     });
 
