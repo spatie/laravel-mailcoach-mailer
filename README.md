@@ -42,76 +42,9 @@ We invest a lot of resources into creating [best in class open source packages](
 
 We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
-## Installation
+## Documentation
 
-You can install the package via composer:
-
-```bash
-composer require spatie/laravel-mailcoach-mailer
-```
-
-If you don't have an account yet, [register at Mailcoach.app](https://mailcoach.app/register)
-
-In your `mail` config file, you must add a mailer in the `mailers key` that uses the `mailcoach` transport. You should also specify your mailcoach domain and a Mailcoach API token. Optionally, you can make it the default mailer in your app.
-
-Here's an example:
-
-```php
-// in config/mail.php
-    
-'default' => 'mailcoach',
-
-'mailers' => [
-    'mailcoach' => [
-        'transport' => 'mailcoach',
-        'domain' => '<your-mailcoach-domain>.mailcoach.app',
-        'token' => '<your-api-token>',
-],
-```
-
-To test if you have everything set up correctly, you can run this artisan command
-
-
-```bash
-php artisan mailcoach-mailer:send-test
-```
-
-The above command will try to send a transactional mail through Mailcoach using your configuration.
-
-## Usage
-
-To send transactional mails through Mailcoach, simply send mail like you're used to.
-
-```php
-// will be sent through mailcoach
-
-Mail::to('john@example.com')->send(new OrderShippedMail());
-```
-
-You'll also be able to create email templates on Mailcoach and use those templates in your app. This is great for marketeers without technical knowledge. They can now write mails without a developer needing to make any code changes.
-
-To send a mail using an email template, apply the `UsesMailcoachMail` on your mailable. You can use `mailcoachMail` to choose an Mailcoach email, and optionally use `replacing` to fill any placeholders.
-
-Here's an example.
-
-```php
-use Illuminate\Mail\Mailable;
-use Spatie\MailcoachMailer\Concerns\UsesMailcoachMail;
-
-class YourMailable extends Mailable
-{
-
-   use UsesMailcoachMail;
-
-
-   public function build()
-   {
-       $this
-           ->mailcoachMail('name-of-your-mailcoach-template')
-           ->replacing(['placeholderName' => 'placeHolderValue']);
-   }
-}
-```
+You'll find full documentation on [this page of the Mailcoach docs](https://mailcoach.app/docs/cloud/using-mailcoach/transactional-mails/using-laravel).
 
 ## Testing
 
