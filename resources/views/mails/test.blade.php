@@ -10,7 +10,7 @@ Mailcoach can do much more besides sending transactional emails. It is a complet
 Mailcoach is the most affordable email solution. Most of our competitors price by the size of your email list; we price by the number of mails sent.
 
 <x-mail::button url="https://mailcoach.app">
-    Discover Mailcoach
+Discover Mailcoach
 </x-mail::button>
 
 Thanks,<br>
