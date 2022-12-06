@@ -1,5 +1,10 @@
 # The driver for sending transactional mails using Mailcoach in Laravel
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/run-tests?label=tests)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
+
 [Mailcoach](https://mailcoach.app) is an affordable platform for all things mail. It can send campaigns to list of any size. It also provides flexible email automation to set up drip campaigns and more. 
 
 Finally, you can also use Mailcoach to send transactional mails. This package contains a driver so you can send any mailable through Mailcoach. 
@@ -20,15 +25,10 @@ This is how you would send a mail using a Mailcoach template.
 public function build()
 {
     $this
-        ->mailcoachMail('name-of-your-mailcoach-template'
+        ->mailcoachMail('name-of-your-mailcoach-template')
         ->replacing(['placeholderName' => 'placeHolderValue']);
 }
 ```
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/run-tests?label=tests)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
 
 ## Support us
 
@@ -46,37 +46,48 @@ You can install the package via composer:
 composer require spatie/laravel-mailcoach-mailer
 ```
 
-You can publish and run the migrations with:
+If you don't have an account yet, [register at Mailcoach.app](https://mailcoach.app/register)
 
-```bash
-php artisan vendor:publish --tag="laravel-mailcoach-mailer-migrations"
-php artisan migrate
-```
+In your `mail` config file, you must add a mailer in the `mailers key` that uses the `mailcoach` transport. You should also specify your mailcoach domain and a Mailcoach API token. Optionally, you can make it the default mailer in your app.
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-mailcoach-mailer-config"
-```
-
-This is the contents of the published config file:
+Here's an example:
 
 ```php
-return [
-];
+// in config/mail.php
+    
+'default' => 'mailcoach',
+
+'mailers' => [
+    'mailcoach' => [
+        'transport' => 'mailcoach',
+        'domain' => '<your-mailcoach-domain>.mailcoach.app',
+        'token' => '<your-api-token>',
+],
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-mailcoach-mailer-views"
-```
+To test if you have everything set up correctly, you can run `mailcoach-mailer:send-test`. This command will try to send a transactional mail through Mailcoach using your configuration.
 
 ## Usage
 
+To send transactional mails through Mailcoach, simply send mail like you're used to.
+
 ```php
-$mailcoachMailer = new Spatie\MailcoachMailer();
-echo $mailcoachMailer->echoPhrase('Hello, Spatie!');
+// will be sent through mailcoach
+
+Mail::to('john@example.com')->send(new OrderShippedMail());
+```
+
+you'll also be able to create email templates on Mailcoach and use those templates in your app. This is great for marketeers without technical knowledge. They can now write mails without a developer needing to make any code changes.
+
+This is how you would send a mail using a Mailcoach template.
+
+```php
+public function build()
+{
+    $this
+        ->mailcoachMail('name-of-your-mailcoach-template')
+        ->replacing(['placeholderName' => 'placeHolderValue']);
+}
 ```
 
 ## Testing
