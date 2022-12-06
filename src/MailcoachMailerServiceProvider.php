@@ -8,9 +8,12 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\MailcoachMailer\Commands\SendTestMailCommand;
 use Spatie\MailcoachMailer\Exceptions\InvalidMailerConfig;
 use Symfony\Component\Mailer\Transport\Dsn;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MailcoachMailerServiceProvider extends PackageServiceProvider
 {
+    protected ?HttpClientInterface $client = null;
+
     public function configurePackage(Package $package): void
     {
         $package
@@ -24,7 +27,9 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
         Mail::extend('mailcoach', function (array $config) {
             $this->validateConfig($config);
 
-            return (new MailcoachTransportFactory)->create(
+            return (new MailcoachTransportFactory(
+                client: $this->client,
+            ))->create(
                 new Dsn(
                     'mailcoach',
                     $config['domain'],
@@ -50,5 +55,12 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
                 throw InvalidMailerConfig::missingValue($key);
             }
         });
+    }
+
+    public function setClient(HttpClientInterface $client): self
+    {
+        $this->client = $client;
+
+        return $this;
     }
 }
