@@ -13,7 +13,7 @@ trait UsesMailcoachMail
     {
         $this->html = 'use-mailcoach-mail';
 
-        $this->addReplacements($replacements);
+        $this->replacing($replacements);
 
         $this->withSymfonyMessage(function (Email $email) use ($mailName) {
             $header = new TransactionalMailHeader($mailName);
@@ -28,20 +28,19 @@ trait UsesMailcoachMail
         return $this;
     }
 
-    public function addReplacement(string $key, string $value): self
+    public function replacing(array|string $key, string $value = null): self
     {
+        if (is_array($key)) {
+            foreach($key as $realKey => $value) {
+                $this->replacing($realKey, $value);
+            }
+
+            return $this;
+        }
+
         $this->withSymfonyMessage(function (Email $email) use ($key, $value) {
             $email->getHeaders()->add(new ReplacementHeader($key, $value));
         });
-
-        return $this;
-    }
-
-    public function addReplacements(array $replacements): self
-    {
-        foreach ($replacements as $key => $value) {
-            $this->addReplacement($key, $value);
-        }
 
         return $this;
     }
