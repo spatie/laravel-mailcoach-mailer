@@ -69,7 +69,14 @@ Here's an example:
 ],
 ```
 
-To test if you have everything set up correctly, you can run `mailcoach-mailer:send-test`. This command will try to send a transactional mail through Mailcoach using your configuration.
+To test if you have everything set up correctly, you can run this artisan command
+
+
+```bash
+php artisan mailcoach-mailer:send-test
+```
+
+The above command will try to send a transactional mail through Mailcoach using your configuration.
 
 ## Usage
 
