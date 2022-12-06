@@ -21,7 +21,7 @@ class SendTestMailCommand extends Command
         }
 
         if (! $to = $this->option('to')) {
-            $to = $this->ask('To which email address should be send a test', config('mail.from.address'));
+            $to = $this->ask('To which email address should we send a test?', config('mail.from.address'));
         }
 
         if (! $mailerName = $this->option('mailer')) {
