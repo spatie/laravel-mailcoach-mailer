@@ -1,10 +1,16 @@
 <x-mail::message>
-# Mailcoach Test Mail
+# Hurray, it worked!
 
-This mail was sent a test by Mailcoach
+You can now send transactional mails using Mailcoach.
 
-<x-mail::button url="https://mailcoach.app/docs">
-    View Docs
+To learn all the options, read [the docs on sending transactional mails in Laravel](https://mailcoach.app/docs/cloud/using-mailcoach/transactional-mails/using-laravel).
+
+Mailcoach can do more than just send transactional mails. It is a complete email marketing platform that covers all your email needs for a fraction of the cost. Mailcoach can send email campaigns to lists of any size. We also offer best-in-class email automation, so you can easily create drip campaigns and more.
+
+Mailcoach is the most affordable email solution. Most of our competitors price by the size of your email list, we price by the amount of mails sent.
+
+<x-mail::button url="https://mailcoach.app">
+    Discover Mailcoach
 </x-mail::button>
 
 Thanks,<br>
