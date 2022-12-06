@@ -13,7 +13,7 @@ beforeEach(function() {
     ]);
 });
 
-it('can let an email use a mailcoach mail template', function() {
+it('can send a regular mailable through the transport', function() {
     expectResponse(function(string $method, string $url, array $options) {
         expect($url)->toBe('https://test.mailcoach.app/api/transactional-mails/send');
         expect($method)->toBe('POST');
