@@ -1,6 +1,29 @@
 # The driver for sending transactional mails using Mailcoach in Laravel
 
-In development...
+[Mailcoach](https://mailcoach.app) is an affordable platform for all things mail. It can send campaigns to list of any size. It also provides flexible email automation to set up drip campaigns and more. 
+
+Finally, you can also use Mailcoach to send transactional mails. This package contains a driver so you can send any mailable through Mailcoach. 
+
+```php
+// will be sent through mailcoach
+
+Mail::to('john@example.com')->send(new OrderShippedMail());
+```
+
+On [mailcoach.app](https://mailcoach.app), you can see an archive of sent mails. Optionally, you can also enable open and click tracking.
+
+Additionally, you'll also be able to create email templates on Mailcoach and use those templates in your app. This is great for marketeers without technical knowledge. They can now write mails without a developer needing to make any code changes.
+
+This is how you would send a mail using a Mailcoach template.
+
+```php
+public function build()
+{
+    $this
+        ->mailcoachMail('name-of-your-mailcoach-template'
+        ->replacing(['placeholderName' => 'placeHolderValue']);
+}
+```
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-mailcoach-mailer/run-tests?label=tests)](https://github.com/spatie/laravel-mailcoach-mailer/actions?query=workflow%3Arun-tests+branch%3Amain)
