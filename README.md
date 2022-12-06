@@ -88,16 +88,28 @@ To send transactional mails through Mailcoach, simply send mail like you're used
 Mail::to('john@example.com')->send(new OrderShippedMail());
 ```
 
-you'll also be able to create email templates on Mailcoach and use those templates in your app. This is great for marketeers without technical knowledge. They can now write mails without a developer needing to make any code changes.
+You'll also be able to create email templates on Mailcoach and use those templates in your app. This is great for marketeers without technical knowledge. They can now write mails without a developer needing to make any code changes.
 
-This is how you would send a mail using a Mailcoach template.
+To send a mail using an email template, apply the `UsesMailcoachMail` on your mailable. You can use `mailcoachMail` to choose an Mailcoach email, and optionally use `replacing` to fill any placeholders.
+
+Here's an example.
 
 ```php
-public function build()
+use Illuminate\Mail\Mailable;
+use Spatie\MailcoachMailer\Concerns\UsesMailcoachMail;
+
+class YourMailable extends Mailable
 {
-    $this
-        ->mailcoachMail('name-of-your-mailcoach-template')
-        ->replacing(['placeholderName' => 'placeHolderValue']);
+
+   use UsesMailcoachMail;
+
+
+   public function build()
+   {
+       $this
+           ->mailcoachMail('name-of-your-mailcoach-template')
+           ->replacing(['placeholderName' => 'placeHolderValue']);
+   }
 }
 ```
 
