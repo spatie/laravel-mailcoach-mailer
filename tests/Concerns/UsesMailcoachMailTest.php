@@ -30,7 +30,7 @@ it('can send a regular mailable through the transport', function () {
         expect($body['reply_to'])->toBe('replyTo@example.com');
 
         expect($body['subject'])->toBe('Test subject');
-        expect($body['text'])->toContain('test by Mailcoach');
+        expect($body['text'])->toContain('send transactional mails using Mailcoach');
         expect($body['html'])->toContain('<a href="https://mailcoach.app/docs');
 
         $attachments = $body['attachments'];
