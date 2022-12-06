@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Mail;
 use Spatie\MailcoachMailer\Tests\TestSupport\Mails\TestMail;
 
-beforeEach(function() {
+beforeEach(function () {
     config()->set('mail.default', 'mailcoach');
 
     config()->set('mail.mailers.mailcoach', [
@@ -13,8 +13,8 @@ beforeEach(function() {
     ]);
 });
 
-it('can send a regular mailable through the transport', function() {
-    expectResponse(function(string $method, string $url, array $options) {
+it('can send a regular mailable through the transport', function () {
+    expectResponse(function (string $method, string $url, array $options) {
         expect($url)->toBe('https://test.mailcoach.app/api/transactional-mails/send');
         expect($method)->toBe('POST');
 
@@ -41,4 +41,3 @@ it('can send a regular mailable through the transport', function() {
 
     Mail::to('to@example.com')->send(new TestMail());
 });
-
