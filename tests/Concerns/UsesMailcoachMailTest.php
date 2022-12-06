@@ -67,4 +67,3 @@ it('can send a mail that makes use of a mailcoach mail template', function () {
 
     Mail::to('to@example.com')->send(new TemplateMail());
 });
-

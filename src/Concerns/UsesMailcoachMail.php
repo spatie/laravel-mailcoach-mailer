@@ -31,7 +31,7 @@ trait UsesMailcoachMail
     public function replacing(array|string $key, string $value = null): self
     {
         if (is_array($key)) {
-            foreach($key as $realKey => $value) {
+            foreach ($key as $realKey => $value) {
                 $this->replacing($realKey, $value);
             }
 
