@@ -21,11 +21,22 @@ it('can send a regular mailable through the transport', function() {
         expect($options['headers'][1])->toBe('Authorization: Bearer fake-token');
 
         $body = json_decode($options['body'], true);
-        expect($body['from'])->toBe('john@example.com');
+        expect($body['from'])->toBe('from@example.com');
         expect($body['to'])->toBe('to@example.com');
+        expect($body['cc'])->toBe('cc@example.com');
+        expect($body['bcc'])->toBe('bcc@example.com');
+        expect($body['reply_to'])->toBe('replyTo@example.com');
+
         expect($body['subject'])->toBe('Test subject');
         expect($body['text'])->toContain('test by Mailcoach');
         expect($body['html'])->toContain('<a href="https://mailcoach.app/docs');
+
+        $attachments = $body['attachments'];
+
+        expect($attachments)->toHaveCount(1);
+        expect($attachments[0]['name'])->toBe('renamed.txt');
+        expect($attachments[0]['content'])->toBe('VGhpcyBpcyBhIHRlc3QgYXR0YWNobWVudC4K');
+        expect($attachments[0]['content_type'])->toBe('text/plain');
     });
 
     Mail::to('to@example.com')->send(new TestMail());

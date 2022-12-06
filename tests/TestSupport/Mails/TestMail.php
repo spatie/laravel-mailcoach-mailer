@@ -16,7 +16,10 @@ class TestMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: 'john@example.com',
+            from: 'from@example.com',
+            cc: 'cc@example.com',
+            bcc: 'bcc@example.com',
+            replyTo: 'replyTo@example.com',
             subject: 'Test subject',
         );
     }
@@ -31,7 +34,7 @@ class TestMail extends Mailable
     public function attachments()
     {
         return [
-            Attachment::fromPath(__DIR__.'/Attachments/test.txt')->as('test.md'),
+            Attachment::fromPath(__DIR__.'/Attachments/test.txt')->as('renamed.txt'),
         ];
     }
 }
