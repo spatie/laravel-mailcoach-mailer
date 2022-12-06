@@ -18,6 +18,6 @@ class TestCase extends Orchestra
     {
         config()->set('app.key', '6rE9Nz59bGRbeMATftriyQjrpF7DcOQm');
 
-        view()->addNamespace('mailcoach-mailer', __DIR__ . '/TestSupport/resources/views');
+        view()->addNamespace('mailcoach-mailer', __DIR__.'/TestSupport/resources/views');
     }
 }

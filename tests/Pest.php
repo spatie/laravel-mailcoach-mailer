@@ -9,7 +9,6 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 uses(TestCase::class)->in(__DIR__);
 
-
 function expectResponse(callable $expectations): void
 {
     $client = new MockHttpClient(function (string $method, string $url, array $options) use ($expectations): ResponseInterface {
