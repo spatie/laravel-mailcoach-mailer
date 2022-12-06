@@ -15,7 +15,11 @@ Finally, you can also use Mailcoach to send transactional mails. This package co
 Mail::to('john@example.com')->send(new OrderShippedMail());
 ```
 
-On [mailcoach.app](https://mailcoach.app), you can see an archive of sent mails. Optionally, you can also enable open and click tracking.
+On [mailcoach.app](https://mailcoach.app), you can see an archive of sent mails.
+
+![screenshot](https://github.com/spatie/laravel-mailcoach-mailer/blob/main/docs/archive.jpg?raw=true)
+
+If you activated the feature, you can also see the opens and clicks of all transactional mails. It's also possible to resend any transactional mails straight from the Mailcoach UI.
 
 Additionally, you'll also be able to create email templates on Mailcoach and use those templates in your app. This is great for marketeers without technical knowledge. They can now write mails without a developer needing to make any code changes.
 
