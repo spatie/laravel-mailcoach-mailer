@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.0.3 - 2023-02-15
+
+- Laravel 10
+
 ## 1.0.2 - 2022-12-06
 
 - improve test mail copy
