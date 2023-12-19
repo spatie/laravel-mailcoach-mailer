@@ -9,8 +9,12 @@ use Symfony\Component\Mime\Email;
 /** @mixin \Illuminate\Mail\Mailable */
 trait UsesMailcoachMail
 {
+    private bool $usingMailcoachMail = false;
+
     public function mailcoachMail(string $mailName, array $replacements = []): self
     {
+        $this->usingMailcoachMail = true;
+
         $this->html = 'use-mailcoach-mail';
 
         $this->replacing($replacements);
@@ -41,6 +45,19 @@ trait UsesMailcoachMail
         $this->withSymfonyMessage(function (Email $email) use ($key, $value) {
             $email->getHeaders()->add(new ReplacementHeader($key, $value));
         });
+
+        return $this;
+    }
+
+    protected function buildSubject($message): self
+    {
+        if (! $this->usingMailcoachMail) {
+            return parent::buildSubject($message);
+        }
+
+        if ($this->subject) {
+            $message->subject($this->subject);
+        }
 
         return $this;
     }
