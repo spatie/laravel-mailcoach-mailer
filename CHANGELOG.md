@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.1.0 - 2024-02-20
+
+### What's Changed
+
+* Add a way to define which mailer you want to use in the API call
+* Bump aglipanci/laravel-pint-action from 2.3.0 to 2.3.1 by @dependabot in https://github.com/spatie/laravel-mailcoach-mailer/pull/13
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.0.4...1.1.0
+
 ## 1.0.4 - 2023-12-19
 
 ### What's fixed
