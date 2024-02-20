@@ -67,3 +67,17 @@ it('can send a mail that makes use of a mailcoach mail template', function () {
 
     Mail::to('to@example.com')->send(new TemplateMail());
 });
+
+it('can send a mail that uses a different mailer', function () {
+    expectResponse(function (string $method, string $url, array $options) {
+        expect($url)->toBe('https://test.mailcoach.app/api/transactional-mails/send');
+        expect($method)->toBe('POST');
+
+        expect($options['headers'][1])->toBe('Authorization: Bearer fake-token');
+
+        $body = json_decode($options['body'], true);
+        expect($body['mailer'])->toBe('transactional-mailer');
+    });
+
+    Mail::to('to@example.com')->send(new TemplateMail());
+});

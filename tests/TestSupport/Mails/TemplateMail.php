@@ -25,7 +25,7 @@ class TemplateMail extends Mailable
         $this
             ->mailcoachMail('mail-name', [
                 'replacementName' => 'replacementValue',
-            ])
+            ], 'transactional-mailer')
             ->replacing('singleName', 'singleValue')
             ->replacing(['multipleName' => 'multipleValue']);
     }
