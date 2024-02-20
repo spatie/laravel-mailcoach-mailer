@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Mail;
-use function Pest\Laravel\artisan;
 use Spatie\MailcoachMailer\Commands\SendTestMailCommand;
+
+use function Pest\Laravel\artisan;
 
 beforeEach(function () {
     Mail::fake();
