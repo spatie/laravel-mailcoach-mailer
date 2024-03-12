@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.2.0 - 2024-03-12
+
+- add support for Laravel 11
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.1.0...1.2.0
+
 ## 1.1.0 - 2024-02-20
 
 ### What's Changed
