@@ -42,7 +42,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Documentation
 
-You'll find full documentation on [this page of the Mailcoach docs](https://mailcoach.app/docs/cloud/using-mailcoach/transactional-mails/using-laravel).
+You'll find full documentation on [this page of the Mailcoach docs](https://mailcoach.app/resources/learn-mailcoach/features/transactional).
 
 ## Testing
 
