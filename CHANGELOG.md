@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.3.0 - 2024-05-02
+
+### What's Changed
+
+* Allow passing an array as value in replacements
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.2.0...1.3.0
+
 ## 1.2.0 - 2024-03-12
 
 - add support for Laravel 11
