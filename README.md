@@ -3,9 +3,9 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-mailcoach-mailer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-mailcoach-mailer)
 
-[Mailcoach](https://mailcoach.app) is an affordable platform for all things mail. It can send campaigns to list of any size. It also provides flexible email automation to set up drip campaigns and more. 
+[Mailcoach](https://mailcoach.app) is an affordable platform for all things mail. It can send campaigns to list of any size. It also provides flexible email automation to set up drip campaigns and more.
 
-Finally, you can also use Mailcoach to send transactional mails. This package contains a driver so you can send any mailable through Mailcoach. 
+Finally, you can also use Mailcoach to send transactional mails. This package contains a driver so you can send any mailable through Mailcoach.
 
 ```php
 // will be sent through mailcoach
@@ -28,6 +28,16 @@ public function build()
 {
     $this
         ->mailcoachMail('name-of-your-mailcoach-template')
+        ->replacing(['placeholderName' => 'placeHolderValue']);
+}
+```
+
+If you want to send a mail notification using a mailcoach template, you can do that in the following way.
+```php
+public function toMail()
+{
+    return (new MailCoachMessage())
+        ->usingMail('name-of-your-mailcoach-template')
         ->replacing(['placeholderName' => 'placeHolderValue']);
 }
 ```
