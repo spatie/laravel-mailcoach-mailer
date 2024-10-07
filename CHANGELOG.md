@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.4.0 - 2024-10-07
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/spatie/laravel-mailcoach-mailer/pull/18
+* Add `MailcoachMessage` class for use in notification classes by @gdebrauwer in https://github.com/spatie/laravel-mailcoach-mailer/pull/19
+
+### New Contributors
+
+* @gdebrauwer made their first contribution in https://github.com/spatie/laravel-mailcoach-mailer/pull/19
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.3.0...1.4.0
+
 ## 1.3.0 - 2024-05-02
 
 ### What's Changed
