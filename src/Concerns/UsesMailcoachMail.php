@@ -2,6 +2,7 @@
 
 namespace Spatie\MailcoachMailer\Concerns;
 
+use Spatie\MailcoachMailer\Headers\FakeHeader;
 use Spatie\MailcoachMailer\Headers\MailerHeader;
 use Spatie\MailcoachMailer\Headers\ReplacementHeader;
 use Spatie\MailcoachMailer\Headers\TransactionalMailHeader;
@@ -12,7 +13,7 @@ trait UsesMailcoachMail
 {
     private bool $usingMailcoachMail = false;
 
-    public function mailcoachMail(string $mailName, array $replacements = [], ?string $mailer = null): self
+    public function mailcoachMail(string $mailName, array $replacements = [], ?string $mailer = null, ?bool $fake = null): self
     {
         $this->usingMailcoachMail = true;
 
@@ -20,6 +21,7 @@ trait UsesMailcoachMail
 
         $this->replacing($replacements);
         $this->usingMailer($mailer);
+        $this->faking($fake);
 
         $this->withSymfonyMessage(function (Email $email) use ($mailName) {
             $transactionalHeader = new TransactionalMailHeader($mailName);
@@ -65,6 +67,25 @@ trait UsesMailcoachMail
 
         $this->withSymfonyMessage(function (Email $email) use ($key, $value) {
             $email->getHeaders()->add(new ReplacementHeader($key, $value));
+        });
+
+        return $this;
+    }
+
+    public function faking(?bool $value): self
+    {
+        if (! $value) {
+            return $this;
+        }
+
+        $this->withSymfonyMessage(function (Email $email) use ($value) {
+            $fakeHeader = new FakeHeader($value);
+
+            if ($email->getHeaders()->has($fakeHeader->getName())) {
+                $email->getHeaders()->remove($fakeHeader->getName());
+            }
+
+            $email->getHeaders()->add($fakeHeader);
         });
 
         return $this;
