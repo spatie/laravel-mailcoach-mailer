@@ -4,6 +4,7 @@ namespace Spatie\MailcoachMailer\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Arr;
+use Spatie\MailcoachMailer\Headers\FakeHeader;
 use Spatie\MailcoachMailer\Headers\MailerHeader;
 use Spatie\MailcoachMailer\Headers\ReplacementHeader;
 use Spatie\MailcoachMailer\Headers\TransactionalMailHeader;
@@ -14,6 +15,8 @@ class MailcoachMessage extends MailMessage
     public string $mailName;
 
     public array $replacements = [];
+
+    public bool $fake = false;
 
     public function usingMail(string $mailName): self
     {
@@ -61,6 +64,23 @@ class MailcoachMessage extends MailMessage
 
         $this->withSymfonyMessage(function (Email $email) use ($key, $value) {
             $email->getHeaders()->add(new ReplacementHeader($key, $value));
+        });
+
+        return $this;
+    }
+
+    public function fake(bool $value): self
+    {
+        $this->fake = $value;
+        
+        $this->withSymfonyMessage(function (Email $email) use ($value) {
+            $fakeHeader = new FakeHeader($mailer);
+
+            if ($email->getHeaders()->has($fakeHeader->getName())) {
+                $email->getHeaders()->remove($fakeHeader->getName());
+            }
+
+            $email->getHeaders()->add($fakeHeader);
         });
 
         return $this;
