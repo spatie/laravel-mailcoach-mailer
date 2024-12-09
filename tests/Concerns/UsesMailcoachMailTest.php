@@ -41,7 +41,7 @@ it('can send a regular mailable through the transport', function () {
         expect($attachments[0]['content_type'])->toBe('text/plain');
     });
 
-    Mail::to('to@example.com')->send(new TestMail());
+    Mail::to('to@example.com')->send(new TestMail);
 });
 
 it('can send a mail that makes use of a mailcoach mail template', function () {
@@ -65,7 +65,7 @@ it('can send a mail that makes use of a mailcoach mail template', function () {
         ]);
     });
 
-    Mail::to('to@example.com')->send(new TemplateMail());
+    Mail::to('to@example.com')->send(new TemplateMail);
 });
 
 it('can send a mail that uses a different mailer', function () {
@@ -79,5 +79,5 @@ it('can send a mail that uses a different mailer', function () {
         expect($body['mailer'])->toBe('transactional-mailer');
     });
 
-    Mail::to('to@example.com')->send(new TemplateMail());
+    Mail::to('to@example.com')->send(new TemplateMail);
 });

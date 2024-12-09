@@ -7,14 +7,14 @@ use Spatie\MailcoachMailer\Notifications\MailcoachMessage;
 
 class TestNotification extends Notification
 {
-    public function via() : array
+    public function via(): array
     {
         return ['mail'];
     }
 
     public function toMail()
     {
-        return (new MailcoachMessage())
+        return (new MailcoachMessage)
             ->usingMail('mail-name')
             ->usingMailer('transactional-mailer')
             ->replacing('singleName', 'singleValue')

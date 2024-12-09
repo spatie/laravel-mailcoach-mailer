@@ -72,8 +72,8 @@ class MailcoachMessage extends MailMessage
     public function faking(bool $value): self
     {
         $this->fake = $value;
-        
-        $this->withSymfonyMessage(function (Email $email) use ($value) {
+
+        $this->withSymfonyMessage(function (Email $email) {
             $fakeHeader = new FakeHeader($mailer);
 
             if ($email->getHeaders()->has($fakeHeader->getName())) {

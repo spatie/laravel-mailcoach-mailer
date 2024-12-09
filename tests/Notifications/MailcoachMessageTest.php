@@ -31,7 +31,7 @@ it('can send a notification that makes use of a mailcoach mail template', functi
         ]);
     });
 
-    Notification::route('mail', 'to@example.com')->notify(new TestNotification());
+    Notification::route('mail', 'to@example.com')->notify(new TestNotification);
 });
 
 it('can send a notification that uses a different mailer', function () {
@@ -45,11 +45,11 @@ it('can send a notification that uses a different mailer', function () {
         expect($body['mailer'])->toBe('transactional-mailer');
     });
 
-    Notification::route('mail', 'to@example.com')->notify(new TestNotification());
+    Notification::route('mail', 'to@example.com')->notify(new TestNotification);
 });
 
 it('can inspect mailcoach message', function () {
-    $mailcoachMessage = (new TestNotification())->toMail();
+    $mailcoachMessage = (new TestNotification)->toMail();
 
     expect($mailcoachMessage->mailName)->toBe('mail-name');
     expect($mailcoachMessage->replacements)->toBe([

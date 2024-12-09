@@ -11,8 +11,7 @@ class TestMail extends Mailable
     public function __construct(
         public $testFrom,
         public $testTo,
-    ) {
-    }
+    ) {}
 
     public function envelope(): Envelope
     {
