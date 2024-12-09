@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.5.0 - 2024-12-09
+
+### What's Changed
+
+* Add fake argument by @francoism90 in https://github.com/spatie/laravel-mailcoach-mailer/pull/24
+
+### New Contributors
+
+* @francoism90 made their first contribution in https://github.com/spatie/laravel-mailcoach-mailer/pull/24
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.4.0...1.5.0
+
 ## 1.4.0 - 2024-10-07
 
 ### What's Changed
