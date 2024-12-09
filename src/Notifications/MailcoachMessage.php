@@ -69,7 +69,7 @@ class MailcoachMessage extends MailMessage
         return $this;
     }
 
-    public function fake(bool $value): self
+    public function faking(bool $value): self
     {
         $this->fake = $value;
         
