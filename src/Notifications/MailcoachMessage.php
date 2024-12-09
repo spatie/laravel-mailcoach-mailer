@@ -73,8 +73,8 @@ class MailcoachMessage extends MailMessage
     {
         $this->fake = $value;
 
-        $this->withSymfonyMessage(function (Email $email) {
-            $fakeHeader = new FakeHeader($mailer);
+        $this->withSymfonyMessage(function (Email $email) use ($value) {
+            $fakeHeader = new FakeHeader($value);
 
             if ($email->getHeaders()->has($fakeHeader->getName())) {
                 $email->getHeaders()->remove($fakeHeader->getName());
