@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.5.1 - 2024-12-11
+
+### What's Changed
+
+* Fix notification fake arg by @francoism90 in https://github.com/spatie/laravel-mailcoach-mailer/pull/25
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.5.0...1.5.1
+
 ## 1.5.0 - 2024-12-09
 
 ### What's Changed
