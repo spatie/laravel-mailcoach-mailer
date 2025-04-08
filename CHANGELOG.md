@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.5.3 - 2025-04-08
+
+* Fix an issue where Laravel Notifications generate a subject for a mail notification, but the transactional mail subject should be used instead.
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.5.2...1.5.3
+
 ## 1.5.2 - 2025-02-20
 
 ### What's Changed
