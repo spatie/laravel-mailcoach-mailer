@@ -21,6 +21,7 @@ class MailcoachMessage extends MailMessage
     public function usingMail(string $mailName): self
     {
         $this->mailName = $mailName;
+        $this->subject = '<empty-subject>';
 
         $this->withSymfonyMessage(function (Email $email) use ($mailName) {
             $transactionalHeader = new TransactionalMailHeader($mailName);
@@ -30,6 +31,10 @@ class MailcoachMessage extends MailMessage
             }
 
             $email->getHeaders()->add($transactionalHeader);
+
+            if ($email->getSubject() === '<empty-subject>') {
+                $email->subject('');
+            }
         });
 
         return $this;

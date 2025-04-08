@@ -34,6 +34,15 @@ it('can send a notification that makes use of a mailcoach mail template', functi
     Notification::route('mail', 'to@example.com')->notify(new TestNotification);
 });
 
+it('does not prefill subject from a notification', function () {
+    expectResponse(function (string $method, string $url, array $options) {
+        $body = json_decode($options['body'], true);
+        expect($body['subject'])->toBe('');
+    });
+
+    Notification::route('mail', 'to@example.com')->notify(new TestNotification);
+});
+
 it('can send a notification that uses a different mailer', function () {
     expectResponse(function (string $method, string $url, array $options) {
         expect($url)->toBe('https://test.mailcoach.app/api/transactional-mails/send');
