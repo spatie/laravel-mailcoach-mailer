@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.6.0 - 2026-03-06
+
+### What's Changed
+
+- Laravel 13.x Compatibility
+- Drop support for PHP < 8.4 and Laravel < 12
+- Update to Pest 4
+
 ## 1.5.3 - 2025-04-08
 
 * Fix an issue where Laravel Notifications generate a subject for a mail notification, but the transactional mail subject should be used instead.
