@@ -54,6 +54,27 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 You'll find full documentation on [this page of the Mailcoach docs](https://mailcoach.app/resources/learn-mailcoach/features/transactional).
 
+### Custom API base URL
+
+By default, mails are sent to `https://{domain}/api/transactional-mails/send`. For self-hosted installations, you can send them to another base URL, for example an internal service over HTTP, by adding the optional `api_base_url` key to your mailer config:
+
+```php
+// config/mail.php
+
+'mailcoach' => [
+    'transport' => 'mailcoach',
+    'domain' => env('MAILCOACH_DOMAIN'),
+    'token' => env('MAILCOACH_API_TOKEN'),
+    'api_base_url' => env('MAILCOACH_API_BASE_URL'),
+],
+```
+
+Set `MAILCOACH_API_BASE_URL` to an absolute HTTP or HTTPS URL, such as `http://mailcoach-service:8080` or `https://internal.example.com/mailcoach`. A port and path prefix are optional. Do not include `/api/transactional-mails/send`, a query string, or a fragment: the transport appends the endpoint itself and removes trailing slashes.
+
+The override takes precedence over `domain`, but `domain` and `token` remain required config keys. Omitting `api_base_url`, or setting it to `null` or an empty string, keeps the default HTTPS URL based on `domain`.
+
+Only use HTTP on a trusted network: the token and mail content are sent without TLS encryption.
+
 ## Testing
 
 ```bash

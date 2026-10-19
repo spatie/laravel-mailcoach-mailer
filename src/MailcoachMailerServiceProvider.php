@@ -35,6 +35,7 @@ class MailcoachMailerServiceProvider extends PackageServiceProvider
                     $config['domain'],
                     options: [
                         'token' => $config['token'],
+                        'api_base_url' => $config['api_base_url'] ?? null,
                     ],
                 )
             );
