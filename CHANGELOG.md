@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-mailcoach-mailer` will be documented in this file.
 
+## 1.7.0 - 2026-10-19
+
+### What’s Changed
+
+* Allow configuring the transactional API base URL using the optional `api_base_url` mailer configuration key, including internal HTTP services, ports, and HTTPS path prefixes, by @vpuentem in https://github.com/spatie/laravel-mailcoach-mailer/pull/42.
+* Preserve the existing HTTPS URL based on `domain` when `api_base_url` is omitted, null, or empty.
+* Add request-level regression coverage for URL routing, authentication, and mail payloads, and document the base URL format.
+* Require `spatie/mailcoach-mailer` ^1.4, the first version supporting the base URL option.
+
+This is a non-breaking feature release. PHP 8.4+ and Laravel 12/13 requirements are unchanged. Only use HTTP on trusted networks because the API token and mail content are sent without TLS encryption.
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailer/compare/1.6.0...1.7.0
+
 ## 1.6.0 - 2026-03-06
 
 ### What's Changed
