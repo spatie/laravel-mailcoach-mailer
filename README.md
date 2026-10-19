@@ -69,6 +69,10 @@ By default, mails are sent to `https://{domain}/api/transactional-mails/send`. F
 ],
 ```
 
+Set `MAILCOACH_API_BASE_URL` to an absolute HTTP or HTTPS URL, such as `http://mailcoach-service:8080` or `https://internal.example.com/mailcoach`. A port and path prefix are optional. Do not include `/api/transactional-mails/send`, a query string, or a fragment: the transport appends the endpoint itself and removes trailing slashes.
+
+The override takes precedence over `domain`, but `domain` and `token` remain required config keys. Omitting `api_base_url`, or setting it to `null` or an empty string, keeps the default HTTPS URL based on `domain`.
+
 Only use HTTP on a trusted network: the token and mail content are sent without TLS encryption.
 
 ## Testing
