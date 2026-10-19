@@ -26,6 +26,15 @@ it('can register a transport', function () {
     expect($transport)->toBeInstanceOf(MailcoachApiTransport::class);
 
     expect(invade($transport))->apiToken->toBe('my-fake-token');
+    expect(invade($transport))->apiBaseUrl->toBeNull();
+});
+
+it('can configure the api base url', function () {
+    config()->set('mail.mailers.mailcoach.api_base_url', 'http://mailcoach-service:8080/');
+
+    $transport = Mail::mailer('mailcoach')->getSymfonyTransport();
+
+    expect(invade($transport))->apiBaseUrl->toBe('http://mailcoach-service:8080');
 });
 
 it('will throw an exception when a required config key is not set', function (string $key) {
