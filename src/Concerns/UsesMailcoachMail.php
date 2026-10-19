@@ -2,13 +2,14 @@
 
 namespace Spatie\MailcoachMailer\Concerns;
 
+use Illuminate\Mail\Mailable;
 use Spatie\MailcoachMailer\Headers\FakeHeader;
 use Spatie\MailcoachMailer\Headers\MailerHeader;
 use Spatie\MailcoachMailer\Headers\ReplacementHeader;
 use Spatie\MailcoachMailer\Headers\TransactionalMailHeader;
 use Symfony\Component\Mime\Email;
 
-/** @mixin \Illuminate\Mail\Mailable */
+/** @mixin Mailable */
 trait UsesMailcoachMail
 {
     private bool $usingMailcoachMail = false;
